@@ -43,6 +43,11 @@ async function errorMessage(response: Response): Promise<string> {
   } catch {
     // fall through to the generic message
   }
+  // The Vite dev proxy answers 502/504 when nothing is listening on the API port,
+  // so the useful message is "start the backend", not the status code.
+  if (response.status === 502 || response.status === 503 || response.status === 504) {
+    return 'Can’t reach the API. Is the backend running on port 8000?'
+  }
   return `Request failed (${response.status})`
 }
 
