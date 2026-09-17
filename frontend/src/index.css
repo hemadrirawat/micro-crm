@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
+
+  --color-paper: #f4f6f8;
+  --color-surface: #ffffff;
+  --color-line: #dfe4ea;
+  --color-line-strong: #c7cfd8;
+  --color-ink: #1b2a36;
+  --color-ink-soft: #4a5a68;
+  --color-ink-faint: #7a8896;
+  --color-harbor: #2b4c7e;
+  --color-harbor-soft: #e6edf6;
+
+  --color-act: #b42318;
+  --color-act-soft: #fdeceb;
+  --color-week: #b25e09;
+  --color-week-soft: #fdf1e3;
+  --color-checkin: #2f6f4f;
+  --color-checkin-soft: #e7f2ec;
+  --color-monitor: #64748b;
+  --color-monitor-soft: #eef1f5;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-feature-settings: 'tnum' 1;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-harbor);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.panel-enter {
+  animation: panel-in 180ms ease-out;
+}
